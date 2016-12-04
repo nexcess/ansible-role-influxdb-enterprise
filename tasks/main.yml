@@ -7,12 +7,12 @@
 
 - name: Install InfluxDB Meta
   include: meta.yml
-  when: ifx_meta
+  when: influxdb_is_meta
 
 - name: Install InfluxDB Data
   include: data.yml
-  when: ifx_data
+  when: influxdb_is_data
 
 - name: Install InfluxDB Console
   include: console.yml
-  when: ifx_console
+  when: influxdb_is_console

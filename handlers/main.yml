@@ -1,0 +1,46 @@
+---
+
+- name: start influxdb
+  service:
+    name=influxdb
+    state=started
+
+- name: restart influxdb
+  service:
+    name=influxdb
+    state=restarted
+
+- name: stop influxdb
+  service:
+    name=influxdb
+    state=stopped
+
+- name: start influxdb-meta
+  service:
+    name=influxdb-meta
+    state=started
+
+- name: stop influxdb-meta
+  service:
+    name=influxdb-meta
+    state=stopped
+
+- name: restart influxdb-meta
+  service:
+    name=influxdb-meta
+    state=restarted
+
+- name: start influx-enterprise
+  service:
+    name=influx-enterprise
+    state=started
+
+- name: stop influx-enterprise
+  service:
+    name=influx-enterprise
+    state=stopped
+
+- name: restart influx-enterprise
+  service:
+    name=influx-enterprise
+    state=restarted

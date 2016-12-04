@@ -1,0 +1,23 @@
+---
+
+influxdb_dl_baseurl: "https://dl.influxdata.com/enterprise/releases"
+influxdb_version: "1.1.0-c1.1.0"
+influxdb_bind_address:
+influxdb_bind_port:
+influxdb_user: influxdb
+influxdb_group: influxdb
+influxdb_admin_enabled: true
+influxdb_admin_bind_address: "{{ ansible_host }}:8073"
+influxdb_admin_https_enabled: true
+influxdb_admin_https_certificate: "/etc/ssl/influxdb.pem"
+influxdb_http_enabled: true
+influxdb_http_bind_address: "{{ ansible_host }}:6443"
+influxdb_http_https_enabled: true
+influxdb_http_https_certificate: "/etc/ssl/influxdb.pem"
+influxdb_http_https_private_key: ""
+influxdb_collectd_enabled: false
+influxdb_collectd_bind_address: "{{ ansible_host }}:25826"
+influxdb_collectd_database: "collectd"
+influxdb_collectd_batch_size: 5000
+influxdb_collectd_batch_pending: 10
+influxdb_collectd_batch_timeout: "10s"

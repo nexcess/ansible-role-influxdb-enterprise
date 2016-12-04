@@ -14,7 +14,7 @@ influxdb_meta_bind_address: ":8089"
 influxdb_meta_http_bind_address: ":8091"
 influxdb_meta_https_enabled: false
 influxdb_meta_https_certificate: ""
-influxdb_meta_gossip-frequence: "5s"
+influxdb_meta_gossip_frequency: "5s"
 influxdb_meta_announcement_expiration: "30s"
 influxdb_meta_retention_autocreate: true
 influxdb_meta_election_timeout: "1s"

@@ -1,0 +1,91 @@
+### Welcome to the InfluxDB Enterprise configuration file.
+
+# The values in this file override the default values used by the system if
+# a config option is not specified.  The commented out lines are the configuration
+# field and the default value used.  Uncommenting a line and changing the value
+# will change the value used at runtime when the process is restarted.
+
+# Once every 24 hours InfluxDB Enterprise will report anonymous data to m.influxdb.com
+# The data includes raft id (random 8 bytes), os, arch, version, and metadata.
+# We don't track ip addresses of servers reporting. This is only used
+# to track the number of instances running and the versions, which
+# is very helpful for us.
+
+# Change this option to true to disable reporting.
+# reporting-disabled = false
+# bind-address = ":8088"
+
+# Hostname advertised by this host for remote addresses.  This must be resolvable by all
+# other nodes in the cluster
+hostname = "{{ influxdb_hostname }}"
+
+[enterprise]
+  # Must be set to true to use the Enterprise Web UI
+  registration-enabled = {{ influxdb_enterprise_registration_enabled | lower }}
+
+  # Must include the protocol (http://)
+  registration-server-url = "{{ influxdb_enterprise_registration_server_url }}"
+
+  # license-key and license-path are mutually exclusive, use only one and leave the other blank
+  license-key = "{{ influxdb_enterprise_license_key }}"
+
+  # license-key and license-path are mutually exclusive, use only one and leave the other blank
+  license-path = "{{ influxdb_enterprise_license_path }}"
+
+[meta]
+  # The location where cluster meta data is stored.
+  dir = "{{ influxdb_meta_dir }}"
+
+  # The default address for raft, cluster, snapshot, etc..
+  bind-address = "{{ influxdb_meta_bind_address }}"
+
+  # The default address to bind the API to.
+  http-bind-address = "{{ influxdb_meta_http_bind_address }}"
+
+  # Determines whether the API uses HTTPS
+  https-enabled = {{ influxdb_meta_https_enabled | lower }}
+
+  # The HTTPS certificate if HTTPS is enabled.
+  https-certificate = "{{ influxdb_meta_https_certificate }}"
+
+  # The default frequency with which the node will gossip its known announcements.
+  gossip-frequency = "{{ influxdb_meta_gossip_frequence }}"
+
+  # The default length of time an announcement is kept before it is considered too old.
+  announcement-expiration = "{{ influxdb_meta_announcement_expiration }}"
+
+  # Automatically create a default retention policy when creating a database.
+  retention-autocreate = {{ influxdb_meta_retention_autocreate | lower }}
+
+  # The amount of time in candidate state without a leader before we attempt an election.
+  election-timeout = "{{ influxdb_meta_election_timeout }}"
+
+  # The amount of time in follower state without a leader before we attempt an election.
+  heartbeat-timeout = "{{ influxdb_meta_heartbeat_timeout }}"
+
+  # Control how long the "lease" lasts for being the leader without being able to contact a quorum
+  # of nodes. If we reach this interval without contact, we will step down as leader.
+  leader-lease-timeout = "{{ influxdb_meta_leader_lease_timeout }}"
+
+  # The amount of time without an Apply() operation before we heartbeat to ensure a timely
+  # commit. Due to random staggering, may be delayed as much as 2x this value.
+  commit-timeout = "{{ influxdb_meta_commit_timeout }}"
+
+  # Enables cluster level trace logging
+  cluster-tracing = {{ influxdb_meta_cluster_tracing | lower }}
+
+  # Enables cluster API level trace logging
+  logging-enabled = {{ influxdb_meta_logging_enabled | lower }}
+
+  # Determines whether the pprof endpoint is enabled.  This endpoint is used for
+  # troubleshooting and monitoring.
+  pprof-enabled = {{ influxdb_meta_pprof_enabled | lower }}
+
+  # The default duration of leases.
+  lease-duration = "{{ influxdb_meta_lease_duration }}"
+
+  # The shared secret used by the API for JWT authentication
+  shared-secret = "{{ influxdb_meta_shared_secret }}"
+
+  # The shared secret used by the internal API for JWT authentication
+  internal-shared-secret = "{{ influxdb_meta_internal_shared_secret }}"

@@ -1,7 +1,36 @@
 ---
 
+influxdb_hostname: ""
 influxdb_dl_baseurl: "https://dl.influxdata.com/enterprise/releases"
 influxdb_version: "1.1.0"
+influxdb_enterprise_license_key: ""
+influxdb_enterprise_license_path: ""
+
+# meta
+influxdb_enterprise_registration_enabled: false
+influxdb_enterprise_registration_server_url: ""
+influxdb_meta_dir: "/var/lib/influxdb/meta"
+influxdb_meta_bind_address: ":8089"
+influxdb_meta_http_bind_address: ":8091"
+influxdb_meta_https_enabled: false
+influxdb_meta_https_certificate: ""
+influxdb_meta_gossip-frequence: "5s"
+influxdb_meta_announcement_expiration: "30s"
+influxdb_meta_retention_autocreate: true
+influxdb_meta_election_timeout: "1s"
+influxdb_meta_heartbeat_timeout: "1s"
+influxdb_meta_leader_lease_timeout: "500ms"
+influxdb_meta_commit_timeout: "50ms"
+influxdb_meta_cluster_tracing: false
+influxdb_meta_logging_enabled: true
+influxdb_meta_pprof_enabled: true
+influxdb_meta_lease_duration: "1m0s"
+influxdb_meta_shared_secret: ""
+influxdb_meta_internal_shared_secret: ""
+
+# node
+
+# console
 
 influxdb_bind_address:
 influxdb_bind_port:

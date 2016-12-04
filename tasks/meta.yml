@@ -1,0 +1,19 @@
+---
+
+- name: Install InfluxDB (Meta)
+  package:
+    name="{{ influxdb_dl_baseurl }}/influxdb-meta-{{ influxdb_version }}_c{{ influxdb_version }}.x86_64.rpm"
+    state=present
+
+- name: Install InfluxDB Config (Meta)
+  template:
+    src=influxdb-meta.conf.j2
+    dest=/etc/influxdb/influxdb-meta.conf
+    owner=root
+    group=root
+    mode=0644
+
+- name: Start InfluxDB (Meta)
+  service:
+    name=influxdb-meta
+    state=started

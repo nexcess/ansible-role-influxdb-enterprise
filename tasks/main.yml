@@ -1,0 +1,20 @@
+---
+
+- name: Import InfluxDB GPG Key
+  rpm_key:
+    key=https://repos.influxdata.com/influxdb.key
+    state=present
+
+- name: Setup /etc/hosts
+
+- name: Install InfluxDB Meta
+  include: meta.yml
+  when: ifx_meta
+
+- name: Install InfluxDB Data
+  include: data.yml
+  when: ifx_data
+
+- name: Install InfluxDB Console
+  include: console.yml
+  when: ifx_console

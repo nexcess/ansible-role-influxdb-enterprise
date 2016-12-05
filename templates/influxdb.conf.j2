@@ -162,7 +162,7 @@ hostname = "{{ influxdb_hostname }}"
 
   # the default rate that hinted handoffs will be retried.  The rate is in bytes per second
   # and applies across all nodes when retried.   A value of 0 disables the rate limit.
-  retry-rate-limit = {{ influxdb_hinted_handoff_rate_limit }}
+  retry-rate-limit = {{ influxdb_hinted_handoff_retry_rate_limit }}
 
   # The default amount of time the system waits before attempting to flush hinted handoff
   # queues. With each failure of a hinted handoff write, this retry interval increases

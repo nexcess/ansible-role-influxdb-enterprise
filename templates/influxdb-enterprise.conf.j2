@@ -1,0 +1,31 @@
+# This the "pretty" URL that end users will see for this app
+url = "{{ influxdb_url }}" # ENV: URL
+
+# This is the host and port you want to bind the application to.
+hostname = "{{ influxdb_hostname }}" # ENV: HOSTNAME
+port = "{{ influxdb_port }}" # ENV: PORT
+
+# You need either a license key or a license file to run Enterprise Web
+license-key = "{{ influxdb_enterprise_license_key }}" # ENV: LICENSE_KEY
+license-file = "{{ influxdb_enterpise_license_path }}" # ENV: LICENSE_FILE
+session-lifetime = "{{ influxdb_session_lifetime }}" # time until users are logged out automatically
+
+[influxdb]
+# The "shared-secret" let's us authenticate users between Enterprise Web
+# and Enterprise Clustering.
+shared-secret = "{{ influxdb_influxdb_shared_secret }}" # ENV: SHARED_SECRET
+
+[smtp]
+# Enterprise Web needs to be able to send emails to do things like
+# invite users to the application.
+host = "{{ influxdb_smtp_host }}" # ENV: SMTP_HOST
+port = "{{ influxdb_smtp_port }}" # ENV: SMTP_PORT
+username = "{{ influxdb_smtp_username }}" # ENV: SMTP_USERNAME
+password = "{{ influxdb_smtp_password }}" # ENV: SMTP_PASSWORD
+from_email = "{{ influxdb_smtp_from_email }}" # ENV: SMTP_FROM_EMAIL
+
+[database]
+# Where is your database?
+# NOTE: This version of Enterprise Web currently only supports Postgres >= 9.3 or SQLite3
+# url = "postgres://postgres:password@localhost:5432/enterprise" # ENV: DATABASE_URL
+url = "{{ influxdb_database_url }}"

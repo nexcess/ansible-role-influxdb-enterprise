@@ -115,3 +115,13 @@ influxdb_continuous_queries_log_enabled: true
 influxdb_continuous_queries_run_interval: "1s"
 
 # console
+influxdb_url: "http://127.0.0.1:3000"
+influxdb_port: "3000"
+influxdb_session_lifetime: "24h"
+influxdb_influxdb_shared_secret: ""
+influxdb_smtp_host: "localhost"
+influxdb_smtp_port: "25"
+influxdb_smtp_username: ""
+influxdb_smtp_password: ""
+influxdb_smtp_from_email: "nobody@nowhere.com"
+influxdb_database_url: "sqlite3:///var/lib/influx-enterprise/enterprise.db"

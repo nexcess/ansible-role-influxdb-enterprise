@@ -12,8 +12,8 @@
 # is very helpful for us.
 
 # Change this option to true to disable reporting.
-# reporting-disabled = false
-# bind-address = ":8088"
+reporting-disabled = {{ influxdb_reporting_disabled | lower }}
+bind-address = "{{ influxdb_bind_address }}"
 
 # Hostname advertised by this host for remote addresses.  This must be resolvable by all
 # other nodes in the cluster

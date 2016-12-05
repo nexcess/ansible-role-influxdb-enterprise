@@ -7,7 +7,7 @@ influxdb_is_console: false
 
 # global vars
 influxdb_reporting_disabled: false
-influxdb_bind_address: ":8088"
+influxdb_bind_address: "127.0.0.1:8088"
 influxdb_hostname: ""
 influxdb_dl_baseurl: "https://dl.influxdata.com/enterprise/releases"
 influxdb_version: "1.1.0"
@@ -77,11 +77,11 @@ influxdb_shard_precreation_advance_period: "30m"
 influxdb_monitor_store_enabled: true
 influxdb_monitor_store_database: "_internal"
 influxdb_monitor_store_interval: "10s"
-influxdb_admin_enabled: true
+influxdb_admin_enabled: false
 influxdb_admin_bind_address: ":8083"
 influxdb_admin_https_enabled: false
 influxdb_admin_https_certificate: "/etc/ssl/influxdb.pem"
-influxdb_http_enabled: true
+influxdb_http_enabled: false
 influxdb_http_bind_address: ":8086"
 influxdb_http_auth_enabled: false
 influxdb_http_realm: "InfluxDB"
@@ -96,7 +96,7 @@ influxdb_http_max_row_limit: 10000
 influxdb_http_max_connection_limit: 0
 influxdb_http_unix_socket_enabled: false
 influxdb_http_bind_socket: "/var/run/influxdb.sock"
-influxdb_subscriber_enabled: true
+influxdb_subscriber_enabled: false
 influxdb_subscriber_http_timeout: "30s"
 influxdb_subscriber_insecure_skip_verify: false
 influxdb_subscriber_ca_certs: ""

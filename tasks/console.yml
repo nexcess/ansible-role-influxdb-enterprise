@@ -15,5 +15,5 @@
 
 - name: Start InfluxDB (Console)
   service:
-    name=influxdb
+    name=influx-enterprise
     state=started

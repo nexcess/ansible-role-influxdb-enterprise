@@ -54,6 +54,7 @@ influxdb_cluster_shard_reader_timeout: "0"
 influxdb_cluster_max_remote_write_connections: 50
 influxdb_cluster_cluster_tracing: false
 influxdb_cluster_write_timeout: "10s"
+influxdb_cluster_max_concurrent_queries: 0
 influxdb_cluster_query_timeout: "0s"
 influxdb_cluster_log_queries_after: "0s"
 influxdb_cluster_max_select_point: 0

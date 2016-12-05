@@ -87,7 +87,7 @@ hostname = "{{ influxdb_hostname }}"
   # CompactFullWriteColdDuration is the duration at which the engine
   # will compact all TSM files in a shard if it hasn't received a
   # write or delete
-  compact-full-write-cold-duration = "{{ influxdb_compact_full_write_cold_duration }}"
+  compact-full-write-cold-duration = "{{ influxdb_data_compact_full_write_cold_duration }}"
 
   # The maximum series allowed per database before writes are dropped.  This limit can prevent
   # high cardinality issues at the database level.  This limit can be disabled by setting it to

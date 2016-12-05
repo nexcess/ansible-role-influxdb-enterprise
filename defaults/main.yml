@@ -49,7 +49,7 @@ influxdb_data_compact_full_write_cold_duration: "4h"
 influxdb_data_max_series_per_database: 1000000
 influxdb_data_max_values_per_tag: 100000
 influxdb_cluster_dial_timeout: "1s"
-influxdb_cluster_shard_write_timeout: "5s"
+influxdb_cluster_shard_writer_timeout: "5s"
 influxdb_cluster_shard_reader_timeout: "0"
 influxdb_cluster_max_remote_write_connections: 50
 influxdb_cluster_cluster_tracing: false

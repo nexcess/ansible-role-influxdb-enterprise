@@ -76,7 +76,7 @@ influxdb_shard_precreation_check_interval: "10m"
 influxdb_shard_precreation_advance_period: "30m"
 influxdb_monitor_store_enabled: true
 influxdb_monitor_store_database: "_internal"
-influxdb_monitor_interval: "10s"
+influxdb_monitor_store_interval: "10s"
 influxdb_admin_enabled: true
 influxdb_admin_bind_address: ":8083"
 influxdb_admin_https_enabled: false

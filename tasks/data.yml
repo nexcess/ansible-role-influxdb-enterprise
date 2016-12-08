@@ -16,4 +16,4 @@
 - name: Start InfluxDB (Data)
   service:
     name=influxdb
-    state=started
+    state=restarted

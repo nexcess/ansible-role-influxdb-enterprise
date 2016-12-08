@@ -16,4 +16,4 @@
 - name: Start InfluxDB (Meta)
   service:
     name=influxdb-meta
-    state=started
+    state=restarted

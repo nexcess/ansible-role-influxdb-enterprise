@@ -1,22 +1,25 @@
 ---
 
-# triggers for sub-role
+## Sub-role Triggers
 influxdb_is_meta: false
 influxdb_is_data: false
 influxdb_is_console: false
 
-# global vars
+## Global
+influxdb_unix_user: "influxdb"
+influxdb_unix_group: "influxdb"
 influxdb_reporting_disabled: false
 influxdb_bind_address: "127.0.0.1:8088"
 influxdb_hostname: ""
 influxdb_dl_baseurl: "https://dl.influxdata.com/enterprise/releases"
 influxdb_version: "1.1.0"
 influxdb_enterprise_license_key: ""
-influxdb_enterprise_license_path: ""
+influxdb_enterprise_license_path: "/etc/influxdb/influxdb-enterprise-license.json"
+influxdb_enterprise_license_file_contents: ""
 influxdb_chronograf_dl_baseurl: "https://dl.influxdata.com/chronograf/releases"
 influxdb_chronograf_version: "1.1.0~beta1"
 
-# meta
+## Meta Vars
 influxdb_enterprise_registration_enabled: false
 influxdb_enterprise_registration_server_url: ""
 influxdb_meta_dir: "/var/lib/influxdb/meta"
@@ -38,7 +41,7 @@ influxdb_meta_lease_duration: "1m0s"
 influxdb_meta_shared_secret: ""
 influxdb_meta_internal_shared_secret: ""
 
-# node
+## Data Vars
 influxdb_meta_meta_tls_enabled: false
 influxdb_meta_meta_insecure_tls: false
 influxdb_data_dir: "/var/lib/influxdb/data"
@@ -116,7 +119,7 @@ influxdb_continuous_queries_enabled: true
 influxdb_continuous_queries_log_enabled: true
 influxdb_continuous_queries_run_interval: "1s"
 
-# console
+## Console Vars
 influxdb_url: "http://127.0.0.1:3000"
 influxdb_port: "3000"
 influxdb_session_lifetime: "24h"

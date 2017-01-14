@@ -7,13 +7,8 @@
 
 - name: Install InfluxDB Config (Console)
   template:
-    src=influxdb-enterprise.conf.j2
-    dest=/etc/influx-enterprise/influx-enterprise.conf
-    owner=root
-    group=root
-    mode=0644
-
-- name: Start InfluxDB (Console)
-  service:
-    name=influx-enterprise
-    state=restarted
+    src="influxdb-enterprise.conf.j2"
+    dest="/etc/influx-enterprise/influx-enterprise.conf"
+    owner="{{ influxdb_unix_user }}"
+    group="{{ influxdb_unix_group }}"
+    mode="0600"

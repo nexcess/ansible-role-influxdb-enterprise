@@ -1,9 +1,14 @@
 ---
 
+- name: Check Key Contents OR Key
+  fail:
+    msg="You can only specify one of license key file contents OR license key itself"
+  when: influxdb_enterprise_license_file_contents != "" and influxdb_enterprise_license_key != ""
+
 - name: Import InfluxDB GPG Key
   rpm_key:
-    key=https://repos.influxdata.com/influxdb.key
-    state=present
+    key="https://repos.influxdata.com/influxdb.key"
+    state="present"
 
 - name: Install InfluxDB Meta
   include: meta.yml
@@ -16,3 +21,27 @@
 - name: Install InfluxDB Console
   include: console.yml
   when: influxdb_is_console
+
+- name: Ouput InfluxDB License File
+  template:
+    src="influxdb-license-file.json.j2"
+    dest="{{ influxdb_enterprise_license_path }}"
+    owner="{{ influxdb_unix_user }}"
+    group="{{ influxdb_unix_group }}"
+    mode="0600"
+  when: influxdb_enterprise_license_file_contents != "" and influxdb_enterprise_license_path != ""
+
+- name: Restart Meta
+  command: /bin/true
+  when: influxdb_is_meta
+  notify: restart influxdb-meta
+
+- name: Restart Data
+  command: /bin/true
+  when: influxdb_is_data
+  notify: restart influxdb
+
+- name: Restart Console
+  command: /bin/true
+  when: influxdb_is_console
+  notify: restart influxdb-enterprise

@@ -1,0 +1,6 @@
+---
+
+#- name: Install Kapacitor
+#  package:
+#    name="{{ influxdb_chronograf_dl_baseurl }}/chronograf-{{ influxdb_chronograf_version }}.x86_64.rpm"
+#    state=present

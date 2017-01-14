@@ -3,17 +3,12 @@
 - name: Install InfluxDB (Data)
   package:
     name="{{ influxdb_dl_baseurl }}/influxdb-data-{{ influxdb_version }}_c{{ influxdb_version }}.x86_64.rpm"
-    state=present
+    state="present"
 
 - name: Install InfluxDB Config (Data)
   template:
-    src=influxdb.conf.j2
-    dest=/etc/influxdb/influxdb.conf
-    owner=root
-    group=root
-    mode=0644
-
-- name: Start InfluxDB (Data)
-  service:
-    name=influxdb
-    state=restarted
+    src="influxdb.conf.j2"
+    dest="/etc/influxdb/influxdb.conf"
+    owner="{{ influxdb_unix_user }}"
+    group="{{ influxdb_unix_group }}"
+    mode="0600"

@@ -1,5 +1,10 @@
 ---
 
+- name: Check Key Contents OR Key
+  fail:
+    msg="You can only specify one of license key file contents OR license key itself"
+  when: influxdb_enterprise_license_file_contents != "" and influxdb_enterprise_license_key != ""
+
 - name: Import InfluxDB GPG Key
   rpm_key:
     key="https://repos.influxdata.com/influxdb.key"

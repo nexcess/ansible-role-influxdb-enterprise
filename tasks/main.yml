@@ -23,8 +23,8 @@
   when: influxdb_is_console
 
 - name: Ouput InfluxDB License File
-  template:
-    src="influxdb-license-file.json.j2"
+  copy:
+    content="{{ influxdb_enterprise_license_file_contents }}"
     dest="{{ influxdb_enterprise_license_path }}"
     owner="{{ influxdb_unix_user }}"
     group="{{ influxdb_unix_group }}"

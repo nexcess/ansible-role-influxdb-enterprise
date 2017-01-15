@@ -3,7 +3,7 @@
 - name: Install InfluxDB (Console)
   package:
     name="https://s3.amazonaws.com/influx-enterprise/releases/influx-enterprise-{{ influxdb_version }}.x86_64.rpm"
-    state=present
+    state="present"
 
 - name: Install InfluxDB Config (Console)
   template:

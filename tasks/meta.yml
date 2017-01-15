@@ -9,6 +9,6 @@
   template:
     src="influxdb-meta.conf.j2"
     dest="/etc/influxdb/influxdb-meta.conf"
-    owner="root"
-    group="root"
-    mode="0644"
+    owner="{{ influxdb_unix_user }}"
+    group="{{ influxdb_unix_group }}"
+    mode="0600"

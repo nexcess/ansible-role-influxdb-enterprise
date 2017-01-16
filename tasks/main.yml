@@ -24,7 +24,7 @@
 
 - name: Ouput InfluxDB License File
   copy:
-    content="{{ influxdb_enterprise_license_file_contents }}"
+    content="{{ influxdb_enterprise_license_file_contents | to_nice_json }}"
     dest="{{ influxdb_enterprise_license_path }}"
     owner="{{ influxdb_unix_user }}"
     group="{{ influxdb_unix_group }}"

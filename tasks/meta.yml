@@ -18,4 +18,3 @@
     dest="/etc/environment"
     state="present"
     line="INFLUXDB_META_HTTP_BIND_ADDRESS={{ backnet_host }}:8091"
-  when: server_extra_path != ''

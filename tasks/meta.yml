@@ -12,9 +12,3 @@
     owner="{{ influxdb_unix_user }}"
     group="{{ influxdb_unix_group }}"
     mode="0600"
-
-- name: Set the INFLUXDB_META_HTTP_BIND_ADDRESS Environment Var
-  lineinfile:
-    dest="/etc/environment"
-    state="present"
-    line="INFLUXDB_META_HTTP_BIND_ADDRESS={{ backnet_host }}:8091"

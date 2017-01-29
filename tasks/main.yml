@@ -3,7 +3,9 @@
 - name: Check Key Contents OR Key
   fail:
     msg="You can only specify one of license key file contents OR license key itself"
-  when: influxdb_enterprise_license_file_contents != "" and influxdb_enterprise_license_key != ""
+  when:
+    - influxdb_enterprise_license_file_contents != ""
+    - influxdb_enterprise_license_key != ""
 
 - name: Import InfluxDB GPG Key
   rpm_key:
@@ -29,7 +31,9 @@
     owner="{{ influxdb_unix_user }}"
     group="{{ influxdb_unix_group }}"
     mode="0600"
-  when: influxdb_enterprise_license_file_contents != "" and influxdb_enterprise_license_path != ""
+  when:
+    - influxdb_enterprise_license_file_contents != ""
+    - influxdb_enterprise_license_path != ""
 
 - name: Restart Meta
   command: /bin/true

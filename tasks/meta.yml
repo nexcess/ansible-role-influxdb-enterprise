@@ -2,7 +2,7 @@
 
 - name: Install InfluxDB (Meta)
   package:
-    name="{{ influxdb_dl_baseurl }}/influxdb-meta-{{ influxdb_version }}_c{{ influxdb_version }}.x86_64.rpm"
+    name="{{ influxdb_dl_baseurl }}/influxdb-meta-{{ influxdb_version }}_c{{ influxdb_subversion }}.x86_64.rpm"
     state="present"
 
 - name: Install InfluxDB Config (Meta)

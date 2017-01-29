@@ -2,7 +2,7 @@
 
 - name: Install InfluxDB (Data)
   package:
-    name="{{ influxdb_dl_baseurl }}/influxdb-data-{{ influxdb_version }}_c{{ influxdb_version }}.x86_64.rpm"
+    name="{{ influxdb_dl_baseurl }}/influxdb-data-{{ influxdb_version }}_c{{ influxdb_subversion }}.x86_64.rpm"
     state="present"
 
 - name: Install InfluxDB Config (Data)

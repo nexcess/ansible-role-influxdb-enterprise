@@ -1,6 +1,18 @@
 ---
 
-#- name: Install Kapacitor
-#  package:
-#    name="{{ influxdb_chronograf_dl_baseurl }}/chronograf-{{ influxdb_chronograf_version }}.x86_64.rpm"
-#    state=present
+- name: Install Kapacitor
+  package:
+    name="{{ kapacitor_dl_baseurl }}/kapacitor-{{ kapacitor_version }}.x86_64.rpm"
+    state=present
+
+- name: Install Kapacitor Config
+  template:
+    src="kapacitor.conf.j2"
+    dest="/etc/kapacitor/kapacitor.conf"
+    owner="{{ kapacitor_unix_user }}"
+    group="{{ kapacitor_unix_group }}"
+    mode="0600"
+
+- name: Restart Kapacitor
+  command: /bin/true
+  notify: restart kapacitor

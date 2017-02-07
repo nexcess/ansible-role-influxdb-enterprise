@@ -188,7 +188,7 @@ kapacitor_hipchat_url: "https://subdomain.hipchat.com/v2/room"
 kapacitor_hipchat_room: ""
 kapacitor_hipchat_token: ""
 kapacitor_hipchat_global: false
-kapacitor_hipchat_state_changes_only: false
+kapacitor_hipchat_stage_changes_only: false
 kapacitor_reporting_enabled: true
 kapacitor_reporting_url: "https://usage.influxdata.com"
 kapacitor_stats_enabled: true

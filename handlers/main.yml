@@ -44,3 +44,18 @@
   service:
     name="influx-enterprise"
     state="restarted"
+
+- name: start kapacitor
+  service:
+    name="kapacitor"
+    state="started"
+
+- name: stop kapacitor
+  service:
+    name="kapacitor"
+    state="stopped"
+
+- name: restart kapacitor
+  service:
+    name="kapacitor"
+    state="restarted"

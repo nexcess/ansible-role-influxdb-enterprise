@@ -174,7 +174,7 @@ kapacitor_influxdb_disable_subscriptions: false
 kapacitor_influxdb_subscription_protocol: "http"
 kapacitor_influxdb_subscriptions_sync_interval: "1m0s"
 kapacitor_influxdb_kapacitor_hostname: ""
-kapacitor_influxdb_http_port: {{ influxdb_http_bind_port }}
+kapacitor_influxdb_http_port: "{{ influxdb_http_bind_port }}"
 kapacitor_influxdb_udp_bind: ""
 kapacitor_influxdb_udp_buffer: 1000
 kapacitor_influxdb_udp_read_buffer: 0

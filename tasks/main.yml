@@ -24,6 +24,10 @@
   include: console.yml
   when: influxdb_is_console
 
+- name: Install InfluxDB Kapacitor
+  include: kapacitor.yml
+  when: influxdb_is_kapacitor
+
 - name: Ouput InfluxDB License File
   copy:
     content="{{ influxdb_enterprise_license_file_contents | to_nice_json }}"
@@ -34,6 +38,7 @@
   when:
     - influxdb_enterprise_license_file_contents != ""
     - influxdb_enterprise_license_path != ""
+    - not influxdb_is_kapacitor
 
 - name: Restart Meta
   command: /bin/true

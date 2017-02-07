@@ -4,6 +4,7 @@
 influxdb_is_meta: false
 influxdb_is_data: false
 influxdb_is_console: false
+influxdb_is_kapacitor: false
 
 ## Global
 influxdb_unix_user: "influxdb"

@@ -325,7 +325,7 @@ default-retention-policy = "{{ kapacitor_default_retention_policy }}"
   # Only applies if global is true.
   # Sets all alerts in state-changes-only mode,
   # meaning alerts will only be sent if the alert state changes.
-  state-changes-only = {{ kapacitor_hipchat_stage_chang_only | lower }}
+  state-changes-only = {{ kapacitor_hipchat_stage_changes_only | lower }}
 
 [alerta]
   # Configure Alerta.

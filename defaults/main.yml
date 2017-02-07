@@ -135,7 +135,7 @@ influxdb_smtp_from_email: "nobody@nowhere.com"
 influxdb_database_url: "sqlite3:///var/lib/influx-enterprise/enterprise.db"
 
 ## Kapacitor Vars
-kapacitor_dl_url: "https://dl.influxdata.com/kapacitor/releases/"
+kapacitor_dl_baseurl: "https://dl.influxdata.com/kapacitor/releases/"
 kapacitor_version: "1.2.0"
 kapacitor_unix_user: "kapacitor"
 kapacitor_unix_group: "kapacitor"

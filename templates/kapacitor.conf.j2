@@ -81,7 +81,7 @@ default-retention-policy = "{{ kapacitor_default_retention_policy }}"
   enabled = {{ kapacitor_influxdb_enabled | lower }}
   default = {{ kapacitor_influxdb_default | lower }}
   name = "{{ kapacitor_influxdb_name }}"
-  urls = [ {{ kapacitor_influxdb_urls | join(",") }} ]
+  urls = [ "{{ kapacitor_influxdb_urls | join('", "') }}" ]
   username = "{{ kapacitor_influxdb_username }}"
   password = "{{ kapacitor_influxdb_password }}"
   timeout = {{ kapacitor_influxdb_timeout }}
@@ -94,13 +94,13 @@ default-retention-policy = "{{ kapacitor_default_retention_policy }}"
 
   # Do not verify the TLS/SSL certificate.
   # This is insecure.
-  insecure-skip-verify = {{ kapacitor_influxdb_insecure_skip_verify }}
+  insecure-skip-verify = {{ kapacitor_influxdb_insecure_skip_verify | lower }}
 
   # Maximum time to try and connect to InfluxDB during startup
   startup-timeout = "{{ kapacitor_influxdb_startup_timeout }}"
 
   # Turn off all subscriptions
-  disable-subscriptions = {{ kapacitor_influxdb_disable_subscriptions }}
+  disable-subscriptions = {{ kapacitor_influxdb_disable_subscriptions | lower }}
 
   # Which protocol to use for subscriptions
   # one of 'udp', 'http', or 'https'.
@@ -180,8 +180,6 @@ default-retention-policy = "{{ kapacitor_default_retention_policy }}"
   #   token = "..."
   #   ca-path = "/path/to/kubernetes/ca.crt"
 
-
-
 [smtp]
   # Configure an SMTP email server
   # Will use TLS and authentication if possible
@@ -218,7 +216,6 @@ default-retention-policy = "{{ kapacitor_default_retention_policy }}"
   community = "kapacitor"
   # Number of retries when sending traps
   retries = 1
-
 
 [opsgenie]
     # Configure OpsGenie with your API key and default routing key.

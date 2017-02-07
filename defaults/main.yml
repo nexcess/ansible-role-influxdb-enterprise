@@ -161,7 +161,7 @@ kapacitor_deadman_interval: "10s"
 kapacitor_deadman_id: "{% raw %}node 'NODE_NAME' in task '{{ .TaskName }}'{% endraw %}"
 kapacitor_deadman_message: "{% raw %}{{ .ID }} is {{ if eq .Level \"OK\" }}alive{{ else }}dead{{ end }}: {{ index .Fields \"collected\" | printf \"%0.3f\" }} points/INTERVAL.{% endraw %}"
 kapacitor_influxdb_enabled: true
-kapacitor_influxdb_fault: true
+kapacitor_influxdb_default: true
 kapacitor_influxdb_name: "localhost"
 kapacitor_influxdb_urls: ["http://localhost:8086"]
 kapacitor_influxdb_username: ""

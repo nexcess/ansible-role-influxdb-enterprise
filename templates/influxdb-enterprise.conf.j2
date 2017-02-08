@@ -8,7 +8,7 @@ port = "{{ influxdb_port }}" # ENV: PORT
 
 # You need either a license key or a license file to run Enterprise Web
 license-key = "{{ influxdb_enterprise_license_key }}" # ENV: LICENSE_KEY
-license-file = "{{ influxdb_enterprise_license_path }}" # ENV: LICENSE_FILE
+license-file = "{{ influxdb_enterprise_console_license_path }}" # ENV: LICENSE_FILE
 session-lifetime = "{{ influxdb_session_lifetime }}" # time until users are logged out automatically
 
 [influxdb]

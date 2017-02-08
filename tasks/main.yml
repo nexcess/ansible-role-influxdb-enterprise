@@ -28,19 +28,6 @@
   include: kapacitor.yml
   when: influxdb_is_kapacitor
 
-- name: Ouput InfluxDB License File
-  copy:
-    content="{{ influxdb_enterprise_license_file_contents | to_nice_json }}"
-    dest="{{ influxdb_enterprise_license_path }}"
-    owner="{{ influxdb_unix_user }}"
-    group="{{ influxdb_unix_group }}"
-    mode="0600"
-  when:
-    - influxdb_enterprise_license_file_contents != ""
-    - influxdb_enterprise_license_path != ""
-    - not influxdb_is_kapacitor
-    - not influxdb_is_console
-
 - name: Restart Meta
   command: /bin/true
   when: influxdb_is_meta

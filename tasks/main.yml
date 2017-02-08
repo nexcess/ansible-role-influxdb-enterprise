@@ -39,6 +39,7 @@
     - influxdb_enterprise_license_file_contents != ""
     - influxdb_enterprise_license_path != ""
     - not influxdb_is_kapacitor
+    - not influxdb_is_console
 
 - name: Restart Meta
   command: /bin/true

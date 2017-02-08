@@ -9,18 +9,17 @@ influxdb_is_kapacitor: false
 ## Global
 influxdb_unix_user: "influxdb"
 influxdb_unix_group: "influxdb"
+influxdb_enterprise_unix_user: "influx-enterprise"
+influxdb_enterprise_unix_group: "influx-enterprise"
 influxdb_reporting_disabled: false
 influxdb_bind_address: "127.0.0.1:8088"
 influxdb_hostname: ""
 influxdb_dl_baseurl: "https://dl.influxdata.com/enterprise/releases"
 influxdb_version: "1.2.0"
 influxdb_subversion: "1.2.1"
-influxdb_console_version: "1.1.1"
 influxdb_enterprise_license_key: ""
 influxdb_enterprise_license_path: "/etc/influxdb/influxdb-enterprise-license.json"
 influxdb_enterprise_license_file_contents: ""
-influxdb_chronograf_dl_baseurl: "https://dl.influxdata.com/chronograf/releases"
-influxdb_chronograf_version: "1.1.0~beta1"
 
 ## Meta Vars
 influxdb_enterprise_registration_enabled: false
@@ -124,6 +123,8 @@ influxdb_continuous_queries_log_enabled: true
 influxdb_continuous_queries_run_interval: "1s"
 
 ## Console Vars
+influxdb_console_dl_baseurl: "https://s3.amazonaws.com/influx-enterprise/releases"
+influxdb_console_version: "1.2.1"
 influxdb_url: "http://127.0.0.1:3000"
 influxdb_port: "3000"
 influxdb_session_lifetime: "24h"
@@ -142,7 +143,8 @@ kapacitor_unix_user: "kapacitor"
 kapacitor_unix_group: "kapacitor"
 kapacitor_data_dir: "/var/lib/kapacitor"
 kapacitor_default_retention_policy: ""
-kapacitor_http_bind_address: ":9092"
+kapacitor_http_bind_port: 9092
+kapacitor_http_bind_address: ":{{ kapacitor_http_bind_port }}"
 kapacitor_http_auth_enabled: true
 kapacitor_http_log_enabled: true
 kapacitor_http_write_tracing: false
@@ -196,3 +198,7 @@ kapacitor_stats_enabled: true
 kapacitor_stats_stats_interval: "10s"
 kapacitor_stats_database: "_kapacitor"
 kapacitor_stats_retention_policy: "autogen"
+
+## Chronograf
+influxdb_chronograf_dl_baseurl: "https://dl.influxdata.com/chronograf/releases"
+influxdb_chronograf_version: "1.1.0~beta1"

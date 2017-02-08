@@ -9,8 +9,8 @@
   template:
     src="influxdb-enterprise.conf.j2"
     dest="/etc/influx-enterprise/influx-enterprise.conf"
-    owner="{{ influxdb_unix_user }}"
-    group="{{ influxdb_unix_group }}"
+    owner="{{ influxdb_enterprise_unix_user }}"
+    group="{{ influxdb_enterprise_unix_group }}"
     mode="0600"
 
 - name: Setup the SQLLite DB (Console)

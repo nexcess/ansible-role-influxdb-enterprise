@@ -2,7 +2,7 @@
 
 - name: Install InfluxDB (Console)
   package:
-    name="{{ influxdb_console_dl_baseurl }}/influx-enterprise-{{ influxdb_version }}.x86_64.rpm"
+    name="{{ influxdb_console_dl_baseurl }}/influx-enterprise-{{ influxdb_console_version }}.x86_64.rpm"
     state="present"
 
 - name: Install InfluxDB Config (Console)

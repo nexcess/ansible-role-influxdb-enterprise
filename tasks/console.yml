@@ -18,14 +18,8 @@
     influx-enterprise migrate
     --config /etc/influx-enterprise/influx-enterprise.conf
   when: "'sqllite' in influxdb_database_url"
-
-- name: Fix Perms on SQLLite (Console)
-  file:
-    path="/var/lib/influx-enterprise"
-    owner="{{ influxdb_enterprise_unix_user }}"
-    group="{{ influxdb_enterprise_unix_group }}"
-    recursive=true
-  when: "'sqllite' in influxdb_database_url"
+  become: true
+  become_user: "{{ influxdb_enterprise_unix_user }}"
 
 - name: Ouput InfluxDB License File
   copy:

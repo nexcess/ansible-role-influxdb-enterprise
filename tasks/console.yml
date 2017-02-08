@@ -27,6 +27,17 @@
     recursive=true
   when: "'sqllite' in influxdb_database_url"
 
+- name: Ouput InfluxDB License File
+  copy:
+    content="{{ influxdb_enterprise_license_file_contents | to_nice_json }}"
+    dest="{{ influxdb_enterprise_console_license_path }}"
+    owner="{{ influxdb_enterprise_unix_user }}"
+    group="{{ influxdb_ebterprise_unix_group }}"
+    mode="0600"
+  when:
+    - influxdb_enterprise_license_file_contents != ""
+    - influxdb_enterprise_license_path != ""
+
 - name: Restart Console
   command: /bin/true
   notify: restart influx-enterprise

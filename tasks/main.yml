@@ -50,8 +50,3 @@
   command: /bin/true
   when: influxdb_is_data
   notify: restart influxdb
-
-- name: Restart Console
-  command: /bin/true
-  when: influxdb_is_console
-  notify: restart influxdb-enterprise

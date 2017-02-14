@@ -14,7 +14,7 @@ session-lifetime = "{{ influxdb_session_lifetime }}" # time until users are logg
 [influxdb]
 # The "shared-secret" let's us authenticate users between Enterprise Web
 # and Enterprise Clustering.
-shared-secret = "{{ influxdb_influxdb_shared_secret }}" # ENV: SHARED_SECRET
+shared-secret = "{{ influxdb_shared_secret }}" # ENV: SHARED_SECRET
 
 [smtp]
 # Enterprise Web needs to be able to send emails to do things like

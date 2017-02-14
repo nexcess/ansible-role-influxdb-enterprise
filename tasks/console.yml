@@ -18,7 +18,7 @@
     sudo -u "{{ influxdb_enterprise_unix_user }}"
     influx-enterprise migrate
     --config /etc/influx-enterprise/influx-enterprise.conf
-  when: 'sqlite' in influxdb_database_url
+  when: "'sqlite' in influxdb_database_url"
 
 - name: Ouput InfluxDB License File
   copy:

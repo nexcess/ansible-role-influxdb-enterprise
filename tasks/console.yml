@@ -5,6 +5,17 @@
     name="{{ influxdb_console_dl_baseurl }}/influx-enterprise-{{ influxdb_console_version }}.x86_64.rpm"
     state="present"
 
+- name: TEMP FIX - Update SystemD Init (Needed for 1.2.0)
+  ini_file:
+    path="/etc/systemd/system/influx-enterprise.service"
+    section="Service"
+    option="Environment"
+    value="GODEBUG=netdns=go"
+    state="present"
+
+- name: TEMP FIX FOR ABOVE - Reload InfluxDB Unit File
+  command: systemctl daemon-reload
+
 - name: Install InfluxDB Config (Console)
   template:
     src="influxdb-enterprise.conf.j2"

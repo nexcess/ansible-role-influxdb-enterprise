@@ -15,9 +15,10 @@
 
 - name: Setup the SQLLite DB (Console)
   command: >
-    sudo -u "{{ influxdb_enterprise_unix_user }}"
     influx-enterprise migrate
     --config /etc/influx-enterprise/influx-enterprise.conf
+  become: true
+  become_user: "{{ influxdb_enterprise_unix_user }}"
   when: '"sqlite" in influxdb_database_url'
 
 - name: Ouput InfluxDB License File

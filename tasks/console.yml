@@ -11,7 +11,7 @@
 
 - name: TEMP FIX - Update SystemD Init (Needed for 1.2.0)
   ini_file:
-    path="/usr/lib/systemd/system/influx-enterprise.service"
+    dest="/usr/lib/systemd/system/influx-enterprise.service"
     section="Service"
     option="Environment"
     value="GODEBUG=netdns=go"
@@ -24,7 +24,7 @@
 
 - name: TEMP FIX - Update SystemD Init (Needed for 1.2.0)
   ini_file:
-    path="/etc/systemd/system/influx-enterprise.service"
+    dest="/etc/systemd/system/influx-enterprise.service"
     section="Service"
     option="Environment"
     value="GODEBUG=netdns=go"

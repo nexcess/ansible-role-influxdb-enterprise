@@ -5,6 +5,10 @@
     name="{{ influxdb_console_dl_baseurl }}/influx-enterprise-{{ influxdb_console_version }}.x86_64.rpm"
     state="present"
 
+- stat:
+    path="/usr/lib/systemd/system/influx-enterprise.service"
+  register: usr_lib_systemd
+
 - name: TEMP FIX - Update SystemD Init (Needed for 1.2.0)
   ini_file:
     path="/usr/lib/systemd/system/influx-enterprise.service"
@@ -12,6 +16,20 @@
     option="Environment"
     value="GODEBUG=netdns=go"
     state="present"
+  when: usr_lib_systemd.stat.exists
+
+- stat:
+    path="/etc/systemd/system/influx-enterprise.service"
+  register: etc_systemd
+
+- name: TEMP FIX - Update SystemD Init (Needed for 1.2.0)
+  ini_file:
+    path="/etc/systemd/system/influx-enterprise.service"
+    section="Service"
+    option="Environment"
+    value="GODEBUG=netdns=go"
+    state="present"
+  when: etc_systemd.stat.exists
 
 - name: TEMP FIX FOR ABOVE - Reload InfluxDB Unit File
   command: systemctl daemon-reload

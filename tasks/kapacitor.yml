@@ -11,6 +11,7 @@
     dest="/etc/kapacitor/kapacitor.conf"
     owner="{{ kapacitor_unix_user }}"
     group="{{ kapacitor_unix_group }}"
+    backup="yes"
     mode="0600"
 
 - name: Restart Kapacitor

@@ -11,6 +11,7 @@
     dest="/etc/influxdb/influxdb-meta.conf"
     owner="{{ influxdb_unix_user }}"
     group="{{ influxdb_unix_group }}"
+    backup="yes"
     mode="0600"
 
 - name: Ouput InfluxDB License File
@@ -19,6 +20,7 @@
     dest="{{ influxdb_enterprise_license_path }}"
     owner="{{ influxdb_unix_user }}"
     group="{{ influxdb_unix_group }}"
+    backup="yes"
     mode="0600"
   when:
     - influxdb_enterprise_license_file_contents != ""

@@ -40,6 +40,7 @@
     dest="/etc/influx-enterprise/influx-enterprise.conf"
     owner="{{ influxdb_enterprise_unix_user }}"
     group="{{ influxdb_enterprise_unix_group }}"
+    backup="yes"
     mode="0600"
 
 - name: Setup the SQLLite DB (Console)
@@ -56,6 +57,7 @@
     dest="{{ influxdb_enterprise_console_license_path }}"
     owner="{{ influxdb_enterprise_unix_user }}"
     group="{{ influxdb_enterprise_unix_group }}"
+    backup="yes"
     mode="0600"
   when:
     - influxdb_enterprise_license_file_contents != ""

@@ -27,13 +27,3 @@
 - name: Install InfluxDB Kapacitor
   include: kapacitor.yml
   when: influxdb_is_kapacitor
-
-- name: Restart Meta
-  command: /bin/true
-  when: influxdb_is_meta
-  notify: restart influxdb-meta
-
-- name: Restart Data
-  command: /bin/true
-  when: influxdb_is_data
-  notify: restart influxdb

@@ -4,6 +4,7 @@
   package:
     name="{{ influxdb_dl_baseurl }}/influxdb-meta-{{ influxdb_version }}_c{{ influxdb_subversion }}.x86_64.rpm"
     state="present"
+  register: influxdb_meta_packaged
 
 - name: Install InfluxDB Config (Meta)
   template:
@@ -13,6 +14,7 @@
     group="{{ influxdb_unix_group }}"
     backup="yes"
     mode="0600"
+  register: influxdb_meta_config
 
 - name: Ouput InfluxDB License File
   copy:
@@ -25,3 +27,8 @@
   when:
     - influxdb_enterprise_license_file_contents != ""
     - influxdb_enterprise_license_path != ""
+
+- name: Restart Meta
+  command: /bin/true
+  when: influxdb_meta_config.changed or influxdb_meta_packaged.changed
+  notify: restart influxdb-meta

@@ -4,7 +4,7 @@
   package:
     name="{{ influxdb_dl_baseurl }}/influxdb-meta-{{ influxdb_version }}_c{{ influxdb_subversion }}.x86_64.rpm"
     state="present"
-  register: influxdb_meta_packaged
+  register: influxdb_meta_package
 
 - name: Install InfluxDB Config (Meta)
   template:
@@ -30,5 +30,5 @@
 
 - name: Restart Meta
   command: /bin/true
-  when: influxdb_meta_config.changed or influxdb_meta_packaged.changed
+  when: influxdb_meta_config.changed or influxdb_meta_package.changed
   notify: restart influxdb-meta

@@ -105,7 +105,7 @@ influxdb_http_max_row_limit: 10000
 influxdb_http_max_connection_limit: 0
 influxdb_http_unix_socket_enabled: false
 influxdb_http_bind_socket: "/var/run/influxdb.sock"
-influxdb_subscriber_enabled: false
+influxdb_subscriber_enabled: true
 influxdb_subscriber_http_timeout: "30s"
 influxdb_subscriber_insecure_skip_verify: false
 influxdb_subscriber_ca_certs: ""
@@ -166,7 +166,7 @@ kapacitor_deadman_id: "{% raw %}node 'NODE_NAME' in task '{{ .TaskName }}'{% end
 kapacitor_deadman_message: "{% raw %}{{ .ID }} is {{ if eq .Level \\\"OK\\\" }}alive{{ else }}dead{{ end }}: {{ index .Fields \\\"collected\\\" | printf \\\"%0.3f\\\" }} points/INTERVAL.{% endraw %}"
 kapacitor_influxdb_enabled: true
 kapacitor_influxdb_default: true
-kapacitor_influxdb_name: "localhost"
+kapacitor_influxdb_name: "cluster"
 kapacitor_influxdb_urls: ["http://localhost:8086"]
 kapacitor_influxdb_username: ""
 kapacitor_influxdb_password: ""
@@ -177,7 +177,7 @@ kapacitor_influxdb_disable_subscriptions: false
 kapacitor_influxdb_subscription_protocol: "http"
 kapacitor_influxdb_subscriptions_sync_interval: "1m0s"
 kapacitor_influxdb_kapacitor_hostname: ""
-kapacitor_influxdb_http_port: "{{ influxdb_http_bind_port }}"
+kapacitor_influxdb_http_port: 0
 kapacitor_influxdb_udp_bind: ""
 kapacitor_influxdb_udp_buffer: 1000
 kapacitor_influxdb_udp_read_buffer: 0

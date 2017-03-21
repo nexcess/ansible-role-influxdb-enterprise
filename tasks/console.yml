@@ -4,6 +4,7 @@
   package:
     name="{{ influxdb_console_dl_baseurl }}/influx-enterprise-{{ influxdb_console_version }}.x86_64.rpm"
     state="present"
+  register: influxdb_console_package
 
 - stat:
     path="/usr/lib/systemd/system/influx-enterprise.service"
@@ -42,6 +43,7 @@
     group="{{ influxdb_enterprise_unix_group }}"
     backup="yes"
     mode="0600"
+  register: influxdb_console_config
 
 - name: Setup the SQLLite DB (Console)
   command: >
@@ -66,3 +68,4 @@
 - name: Restart Console
   command: /bin/true
   notify: restart influx-enterprise
+  when: influxdb_console_config.changed or influxdb_console_package.changed

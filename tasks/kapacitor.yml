@@ -4,6 +4,7 @@
   package:
     name="{{ kapacitor_dl_baseurl }}/kapacitor-{{ kapacitor_version }}.x86_64.rpm"
     state=present
+  register: influxdb_kapacitor_package
 
 - name: Install Kapacitor Config
   template:
@@ -13,7 +14,9 @@
     group="{{ kapacitor_unix_group }}"
     backup="yes"
     mode="0600"
+  register: influxdb_kapacitor_config
 
 - name: Restart Kapacitor
   command: /bin/true
   notify: restart kapacitor
+  when: influxdb_kapacitor_config.changed or influxdb_kapacitor_package.changed

@@ -15,8 +15,8 @@ influxdb_reporting_disabled: false
 influxdb_bind_address: "127.0.0.1:8088"
 influxdb_hostname: ""
 influxdb_dl_baseurl: "https://dl.influxdata.com/enterprise/releases"
-influxdb_version: "1.2.1"
-influxdb_subversion: "1.2.2"
+influxdb_version: "1.2.4"
+influxdb_subversion: "1.2.5"
 influxdb_enterprise_license_key: ""
 influxdb_enterprise_license_path: "/etc/influxdb/influxdb-enterprise-license.json"
 influxdb_enterprise_console_license_path: "/etc/influx-enterprise/influxdb-enterprise-license.json"
@@ -30,6 +30,8 @@ influxdb_meta_bind_address: ":8089"
 influxdb_meta_http_bind_address: ":8091"
 influxdb_meta_https_enabled: false
 influxdb_meta_https_certificate: ""
+influxdb_meta_https_private_key: ""
+influxdb_meta_https_insecure_tls: false
 influxdb_meta_gossip_frequency: "5s"
 influxdb_meta_announcement_expiration: "30s"
 influxdb_meta_retention_autocreate: true
@@ -37,16 +39,20 @@ influxdb_meta_election_timeout: "1s"
 influxdb_meta_heartbeat_timeout: "1s"
 influxdb_meta_leader_lease_timeout: "500ms"
 influxdb_meta_commit_timeout: "50ms"
+influxdb_meta_consensus_timeout: "30s"
 influxdb_meta_cluster_tracing: false
 influxdb_meta_logging_enabled: true
 influxdb_meta_pprof_enabled: true
 influxdb_meta_lease_duration: "1m0s"
+influxdb_meta_auth_enabled: false
 influxdb_meta_shared_secret: ""
 influxdb_meta_internal_shared_secret: ""
 
 ## Data Vars
 influxdb_http_bind_port: 8086
 influxdb_meta_meta_tls_enabled: false
+influxdb_meta_meta_auth_enabled: false
+influxdb_meta_meta_internal_shared_secret: ""
 influxdb_meta_meta_insecure_tls: false
 influxdb_data_dir: "/var/lib/influxdb/data"
 influxdb_data_wal_dir: "/var/lib/influxdb/wal"
@@ -58,7 +64,6 @@ influxdb_data_compact_full_write_cold_duration: "4h"
 influxdb_data_max_series_per_database: 1000000
 influxdb_data_max_values_per_tag: 100000
 influxdb_cluster_dial_timeout: "1s"
-influxdb_cluster_shard_writer_timeout: "5s"
 influxdb_cluster_shard_reader_timeout: "0"
 influxdb_cluster_max_remote_write_connections: 50
 influxdb_cluster_cluster_tracing: false
@@ -86,6 +91,7 @@ influxdb_shard_precreation_advance_period: "30m"
 influxdb_monitor_store_enabled: true
 influxdb_monitor_store_database: "_internal"
 influxdb_monitor_store_interval: "10s"
+influxdb_monitor_remote_collect_interval: "10s"
 influxdb_admin_enabled: false
 influxdb_admin_bind_address: ":8083"
 influxdb_admin_https_enabled: false
@@ -101,7 +107,7 @@ influxdb_http_https_enabled: false
 influxdb_http_https_certificate: "/etc/ssl/influxdb.pem"
 influxdb_http_https_private_key: ""
 influxdb_http_shared_secret: ""
-influxdb_http_max_row_limit: 10000
+influxdb_http_max_row_limit: 0
 influxdb_http_max_connection_limit: 0
 influxdb_http_unix_socket_enabled: false
 influxdb_http_bind_socket: "/var/run/influxdb.sock"
@@ -115,6 +121,7 @@ influxdb_udp_enabled: false
 influxdb_udp_bind_address: ":8089"
 influxdb_udp_database: "udp"
 influxdb_udp_retention_policy: ""
+influxdb_udp_precision: ""
 influxdb_udp_batch_size: 5000
 influxdb_udp_batch_pending: 10
 influxdb_udp_batch_timeout: "1s"

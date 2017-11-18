@@ -37,6 +37,12 @@ hostname = "{{ influxdb_hostname }}"
   # Use TLS when connecting to meta nodes
   meta-tls-enabled = {{ influxdb_meta_meta_tls_enabled | lower }}
 
+  # This setting must have the same value as the meta nodes' meta.auth-enabled configuration.
+  meta-auth-enabled = {{ influxdb_meta_meta_auth_enabled | lower }}
+
+  # This setting must have the same value as the meta nodes' meta.internal-shared-secret configuration.
+  meta-internal-shared-secret = "{{ influxdb_meta_meta_internal_shared_secret | lower }}"
+
   # Allows insecure TLS connections to meta nodes.  This is useful when testing with self-
   # signed certificates.
   meta-insecure-tls = {{ influxdb_meta_meta_insecure_tls | lower }}
@@ -103,9 +109,6 @@ hostname = "{{ influxdb_hostname }}"
 [cluster]
   # The default timeout for initial connection dialing.
   dial-timeout = "{{ influxdb_cluster_dial_timeout }}"
-
-  # The default timeout set on shard writers.
-  shard-writer-timeout = "{{ influxdb_cluster_shard_writer_timeout }}"
 
   # The default timeout set on shard readers.
   shard-reader-timeout = "{{ influxdb_cluster_shard_reader_timeout }}"
@@ -227,6 +230,9 @@ hostname = "{{ influxdb_hostname }}"
 
   # The interval at which to record statistics
   store-interval = "{{ influxdb_monitor_store_interval }}"
+
+  # How often to poll other data nodes' stats when aggregating cluster stats.
+  remote-collect-interval = "{{ influxdb_monitor_remote_collect_interval | lower }}"
 
 ###
 ### [admin]
@@ -393,6 +399,12 @@ hostname = "{{ influxdb_hostname }}"
   # retention-policy = ""
   # typesdb = "/usr/share/collectd/types.db"
 
+  # The collectd security level can be "" or "none", "sign", or "encrypt".
+  # security-level = ""
+
+  # Path to the collectd auth file. Must be set if security level is sign or encrypt.
+  # auth-file = ""
+
   # These next lines control how batching works. You should have this enabled
   # otherwise you could get dropped metrics or poor performance. Batching
   # will buffer points in memory if you have many coming in.
@@ -451,6 +463,9 @@ hostname = "{{ influxdb_hostname }}"
   bind-address = "{{ influxdb_udp_bind_address }}"
   database = "{{ influxdb_udp_database }}"
   retention-policy = "{{ influxdb_udp_retention_policy }}"
+
+  # InfluxDB precision for timestamps on received points ("" or "n", "u", "ms", "s", "m", "h")
+  precision = "{{ influxdb_udp_precision }}"
 
   # These next lines control how batching works. You should have this enabled
   # otherwise you could get dropped metrics or poor performance. Batching

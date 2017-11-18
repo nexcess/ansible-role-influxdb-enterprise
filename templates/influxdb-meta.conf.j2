@@ -49,6 +49,13 @@ hostname = "{{ influxdb_hostname }}"
   # The HTTPS certificate if HTTPS is enabled.
   https-certificate = "{{ influxdb_meta_https_certificate }}"
 
+  # Use a separate private key location.
+  https-private-key = "{{ influxdb_meta_https_private_key }}"
+
+  # Whether to skip certificate validation when making HTTPS requests to other meta nodes.
+  # This is useful when testing with self-signed certificates.
+  https-insecure-tls = {{ influxdb_meta_https_insecure_tls | lower }}
+
   # The default frequency with which the node will gossip its known announcements.
   gossip-frequency = "{{ influxdb_meta_gossip_frequency }}"
 
@@ -72,6 +79,9 @@ hostname = "{{ influxdb_hostname }}"
   # commit. Due to random staggering, may be delayed as much as 2x this value.
   commit-timeout = "{{ influxdb_meta_commit_timeout }}"
 
+  # Timeout waiting for consensus before getting the latest Raft snapshot.
+  consensus-timeout = "{{ influxdb_meta_consensus_timeout | lower }}"
+
   # Enables cluster level trace logging
   cluster-tracing = {{ influxdb_meta_cluster_tracing | lower }}
 
@@ -84,6 +94,9 @@ hostname = "{{ influxdb_hostname }}"
 
   # The default duration of leases.
   lease-duration = "{{ influxdb_meta_lease_duration }}"
+
+  # If true, HTTP endpoints require authentication.
+  auth-enabled = {{ influxdb_meta_auth_enabled | lower }}
 
   # The shared secret used by the API for JWT authentication
   shared-secret = "{{ influxdb_shared_secret }}"

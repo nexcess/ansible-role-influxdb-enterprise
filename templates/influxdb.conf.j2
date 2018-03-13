@@ -37,6 +37,12 @@ hostname = "{{ influxdb_hostname }}"
   # Use TLS when connecting to meta nodes
   meta-tls-enabled = {{ influxdb_meta_meta_tls_enabled | lower }}
 
+  # This setting must have the same value as the meta nodes' meta.auth-enabled configuration.
+  meta-auth-enabled = {{ influxdb_meta_meta_auth_enabled | lower }}
+
+  # This setting must have the same value as the meta nodes' meta.internal-shared-secret configuration.
+  meta-internal-shared-secret = "{{ influxdb_meta_meta_internal_shared_secret | lower }}"
+
   # Allows insecure TLS connections to meta nodes.  This is useful when testing with self-
   # signed certificates.
   meta-insecure-tls = {{ influxdb_meta_meta_insecure_tls | lower }}
@@ -61,6 +67,17 @@ hostname = "{{ influxdb_hostname }}"
 
   # The directory where the TSM storage engine stores WAL files.
   wal-dir = "{{ influxdb_data_wal_dir }}"
+
+  # The amount of time that a write will wait before fsyncing.  A duration
+  # greater than 0 can be used to batch up multiple fsync calls.  This is useful for slower
+  # disks or when WAL write contention is seen.  A value of 0s fsyncs every write to the WAL.
+  # Values in the range of 0-100ms are recommended for non-SSD disks.
+  wal-fsync-delay = "{{ influxdb_data_wal_fsync_delay }}"
+
+  # The type of shard index to use for new shards.  The default is an in-memory index that is
+  # recreated at startup.  A value of "tsi1" will use a disk based index that supports higher
+  # cardinality datasets.
+  index-version = "{{ influxdb_data_index_version }}"
 
   # Trace logging provides more verbose output around the tsm engine. Turning
   # this on can provide more useful output for debugging tsm engine issues.
@@ -90,6 +107,12 @@ hostname = "{{ influxdb_hostname }}"
   # write or delete
   compact-full-write-cold-duration = "{{ influxdb_data_compact_full_write_cold_duration }}"
 
+  # The maximum number of concurrent full and level compactions that can run at one time.  A
+  # value of 0 results in 50% of runtime.GOMAXPROCS(0) used at runtime.  Any number greater
+  # than 0 limits compactions to that value.  This setting does not apply
+  # to cache snapshotting.
+  max-concurrent-compactions = {{ influxdb_data_max_concurrent_compactions }}
+
   # The maximum series allowed per database before writes are dropped.  This limit can prevent
   # high cardinality issues at the database level.  This limit can be disabled by setting it to
   # 0.
@@ -104,14 +127,15 @@ hostname = "{{ influxdb_hostname }}"
   # The default timeout for initial connection dialing.
   dial-timeout = "{{ influxdb_cluster_dial_timeout }}"
 
-  # The default timeout set on shard writers.
-  shard-writer-timeout = "{{ influxdb_cluster_shard_writer_timeout }}"
+  # The default time a stream will remain idle in the connection pool before being reaped.
+  # pool-max-idle-time = "{{ influxdb_cluster_pool_max_idle_time }}"
+
+  # The default maximum number of streams that can be idle in a pool, per node.
+  # The number of active streams can exceed the maximum, but they will not return to the pool when released.
+  # pool-max-idle-streams = {{ influxdb_cluster_pool_max_idle_streams }}
 
   # The default timeout set on shard readers.
   shard-reader-timeout = "{{ influxdb_cluster_shard_reader_timeout }}"
-
-  # The maximum number of open connections that will be available for remote writes to another host.
-  max-remote-write-connections = {{ influxdb_cluster_max_remote_write_connections }}
 
   # Enables cluster trace logging
   cluster-tracing = {{ influxdb_cluster_cluster_tracing | lower }}
@@ -178,6 +202,23 @@ hostname = "{{ influxdb_hostname }}"
   purge-interval = "{{ influxdb_hinted_handoff_purge_interval }}"
 
 ###
+### [anti-entropy]
+###
+### Controls the copying and repairing of shards to ensure that data nodes contain
+### the shard data they are supposed to.
+
+[anti-entropy]
+  # Determines whether the service is enabled.
+  enabled = {{ influxdb_anti_entropy_enabled | lower }}
+
+  # The interval of time when anti-entropy checks run on each data node.
+  check-interval = "{{ influxdb_anti_entropy_check_interval }}"
+
+  # The maximum number of shards that a single data node will copy or repair
+  # in parallel.
+  max-fetch = {{ influxdb_anti_entropy_max_fetch }}
+
+###
 ### [retention]
 ###
 ### Controls the enforcement of retention policies for evicting old data.
@@ -228,25 +269,8 @@ hostname = "{{ influxdb_hostname }}"
   # The interval at which to record statistics
   store-interval = "{{ influxdb_monitor_store_interval }}"
 
-###
-### [admin]
-###
-### Controls the availability of the built-in, web-based admin interface. If HTTPS is
-### enabled for the admin interface, HTTPS must also be enabled on the [http] service.
-###
-
-[admin]
-  # Determines whether the admin service is enabled.
-  enabled = {{ influxdb_admin_enabled | lower }}
-
-  # The default bind address used by the admin service.
-  bind-address = "{{ influxdb_admin_bind_address }}"
-
-  # Whether the admin service should use HTTPS.
-  https-enabled = {{ influxdb_admin_https_enabled | lower }}
-
-  # The SSL certificate used when HTTPS is enabled.
-  https-certificate = "{{ influxdb_admin_https_certificate }}"
+  # How often to poll other data nodes' stats when aggregating cluster stats.
+  remote-collect-interval = "{{ influxdb_monitor_remote_collect_interval | lower }}"
 
 ###
 ### [http]
@@ -393,6 +417,12 @@ hostname = "{{ influxdb_hostname }}"
   # retention-policy = ""
   # typesdb = "/usr/share/collectd/types.db"
 
+  # The collectd security level can be "" or "none", "sign", or "encrypt".
+  # security-level = ""
+
+  # Path to the collectd auth file. Must be set if security level is sign or encrypt.
+  # auth-file = ""
+
   # These next lines control how batching works. You should have this enabled
   # otherwise you could get dropped metrics or poor performance. Batching
   # will buffer points in memory if you have many coming in.
@@ -451,6 +481,9 @@ hostname = "{{ influxdb_hostname }}"
   bind-address = "{{ influxdb_udp_bind_address }}"
   database = "{{ influxdb_udp_database }}"
   retention-policy = "{{ influxdb_udp_retention_policy }}"
+
+  # InfluxDB precision for timestamps on received points ("" or "n", "u", "ms", "s", "m", "h")
+  precision = "{{ influxdb_udp_precision }}"
 
   # These next lines control how batching works. You should have this enabled
   # otherwise you could get dropped metrics or poor performance. Batching

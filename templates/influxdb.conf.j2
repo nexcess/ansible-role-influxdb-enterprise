@@ -77,7 +77,7 @@ hostname = "{{ influxdb_hostname }}"
   # The type of shard index to use for new shards.  The default is an in-memory index that is
   # recreated at startup.  A value of "tsi1" will use a disk based index that supports higher
   # cardinality datasets.
-  # index-version = "inmem"
+  index-version = "{{ influxdb_data_index_version }}"
 
   # Trace logging provides more verbose output around the tsm engine. Turning
   # this on can provide more useful output for debugging tsm engine issues.
@@ -209,7 +209,7 @@ hostname = "{{ influxdb_hostname }}"
 
 [anti-entropy]
   # Determines whether the service is enabled.
-  enabled = true {{ influxdb_anti_entropy_enabled | lower }}
+  enabled = {{ influxdb_anti_entropy_enabled | lower }}
 
   # The interval of time when anti-entropy checks run on each data node.
   check-interval = "{{ influxdb_anti_entropy_check_interval }}"
